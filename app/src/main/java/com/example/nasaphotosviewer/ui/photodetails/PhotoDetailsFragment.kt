@@ -1,4 +1,4 @@
-package com.example.nasaphotosviewer.ui.photo
+package com.example.nasaphotosviewer.ui.photodetails
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.example.nasaphotosviewer.R
 
 
-class PhotoFragment : Fragment() {
+class PhotoDetailsFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
