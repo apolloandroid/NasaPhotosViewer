@@ -13,5 +13,4 @@ class DateOverviewViewModelFactory(private val application: Application) :
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
-
 }
