@@ -1,24 +1,28 @@
 package com.example.nasaphotosviewer.ui.dateoverview
 
-import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.nasaphotosviewer.data.model.DateResponse
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
+import com.example.nasaphotosviewer.App
+import com.example.nasaphotosviewer.data.model.Date
+import com.example.nasaphotosviewer.data.network.NasaService
+import kotlinx.coroutines.*
 
-class DateOverviewViewModel(application: Application) : AndroidViewModel(application) {
+class DateOverviewViewModel(private val application: App) : AndroidViewModel(application) {
     private val viewModelJob = Job()
-    private val viewModelScope = CoroutineScope(Dispatchers.IO + Job())
+    private val viewModelScope = CoroutineScope(Dispatchers.IO + viewModelJob)
 
-    private val _datesList: MutableLiveData<List<DateResponse>> = getDatesList()
-    val datesList: LiveData<List<DateResponse>>
-        get() = _datesList
+    var dates: MutableLiveData<List<Date>> = MutableLiveData()
 
-    private fun getDatesList(): MutableLiveData<List<DateResponse>> {
-        return MutableLiveData()
+    init {
+        getDatesList()
     }
 
+    private fun getDatesList() {
+      viewModelScope.launch {
+          dates.postValue(
+              application.nasaService.getDates()
+          )
+        }
+    }
 }
