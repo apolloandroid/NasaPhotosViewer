@@ -3,7 +3,7 @@ package com.example.nasaphotosviewer.data.model
 import com.example.nasaphotosviewer.data.network.NasaService
 
 
-data class PhotoResponse(
+data class Photo(
     var identifier: String? = null,
     var caption: String? = null,
     var image: String? = null,
