@@ -1,35 +1,20 @@
 package com.example.nasaphotosviewer.data.network
 
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.example.nasaphotosviewer.data.model.Date
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
 
+
 class NasaService {
+    var api: NasaApi
 
-    val api = createRetrofit().create(
-        NasaApi::
-        class.java
-    )
-
-    companion object {
-        var KEY = "bUPDj3NcY7TPvoShGVEilLJJmiYHzdqyirJx04n4"
-    }
-
-    private fun createRetrofit(): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl("https://api.nasa.gov/EPIC/api/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(createOkHttpClient())
-            .addCallAdapterFactory(CoroutineCallAdapterFactory())
-            .build()
-    }
-
-    private fun createOkHttpClient(): OkHttpClient? {
+    private fun createOkHttpClient(): OkHttpClient {
         val httpClient = OkHttpClient.Builder()
         httpClient.addInterceptor(object : Interceptor {
             @Throws(IOException::class)
@@ -49,5 +34,29 @@ class NasaService {
         logging.level = HttpLoggingInterceptor.Level.BODY
         httpClient.addInterceptor(logging)
         return httpClient.build()
+    }
+
+    private fun createRetrofit(): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl("https://api.nasa.gov/EPIC/api/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(createOkHttpClient())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .build()
+    }
+
+    companion object {
+        @JvmField
+        var KEY = "bUPDj3NcY7TPvoShGVEilLJJmiYHzdqyirJx04n4"
+    }
+
+    init {
+        val retrofit = createRetrofit()
+        api = retrofit.create(NasaApi::class.java)
+    }
+
+    suspend fun getDates(): List<Date>? {
+        val response = api.getDatesWithPhoto().execute()
+        return response.body()
     }
 }
