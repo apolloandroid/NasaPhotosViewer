@@ -1,16 +1,15 @@
 package com.example.nasaphotosviewer.ui.dateoverview
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.nasaphotosviewer.data.model.DateResponse
+import com.example.nasaphotosviewer.data.model.Date
 import com.example.nasaphotosviewer.databinding.DateListItemBinding
 
 class DateListAdapter :
-    ListAdapter<DateResponse, DateListAdapter.DateViewHolder>(DateDiffCallBack()) {
+    ListAdapter<Date, DateListAdapter.DateViewHolder>(DateDiffCallBack()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DateViewHolder =
         DateViewHolder.from(parent)
@@ -23,7 +22,7 @@ class DateListAdapter :
     class DateViewHolder private constructor(private val binding: DateListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(date: DateResponse) {
+        fun bind(date: Date) {
             binding.date = date
         }
 
@@ -36,11 +35,11 @@ class DateListAdapter :
         }
     }
 
-    private class DateDiffCallBack : DiffUtil.ItemCallback<DateResponse>() {
-        override fun areItemsTheSame(oldItem: DateResponse, newItem: DateResponse): Boolean =
+    private class DateDiffCallBack : DiffUtil.ItemCallback<Date>() {
+        override fun areItemsTheSame(oldItem: Date, newItem: Date): Boolean =
             oldItem == newItem
 
-        override fun areContentsTheSame(oldItem: DateResponse, newItem: DateResponse): Boolean =
+        override fun areContentsTheSame(oldItem: Date, newItem: Date): Boolean =
             oldItem == newItem
     }
 }
