@@ -33,6 +33,6 @@
 
         <variable
             name="date"
-            type="com.example.nasaphotosviewer.data.model.DateResponse" />
+            type="com.example.nasaphotosviewer.data.model.Date" />
     </data>
 </layout>
