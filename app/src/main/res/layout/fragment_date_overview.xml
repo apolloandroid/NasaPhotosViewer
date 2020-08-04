@@ -13,6 +13,6 @@
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="3"
         tools:context=".MainActivity"
-        tools:listitem="@layout/date_list_item" />
+        tools:listitem="@layout/dates_list_item" />
 
 </layout>
