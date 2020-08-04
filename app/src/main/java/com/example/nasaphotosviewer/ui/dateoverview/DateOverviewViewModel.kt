@@ -34,4 +34,9 @@ class DateOverviewViewModel(private val application: App) : AndroidViewModel(app
             )
         }
     }
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
+    }
 }
