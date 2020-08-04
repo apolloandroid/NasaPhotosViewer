@@ -1,6 +1,7 @@
 package com.example.nasaphotosviewer.data.network
 
 import com.example.nasaphotosviewer.data.model.Date
+import com.example.nasaphotosviewer.data.model.Photo
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
@@ -10,9 +11,24 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
 
+private const val BASE_URL = "https://api.nasa.gov/EPIC/api/"
 
-class NasaService {
-    var api: NasaApi
+class NasaService:NetworkService {
+    val api = createRetrofit().create(NasaApi::class.java)
+
+    companion object {
+        @JvmField
+        var KEY = "bUPDj3NcY7TPvoShGVEilLJJmiYHzdqyirJx04n4"
+    }
+
+    private fun createRetrofit(): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(createOkHttpClient())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .build()
+    }
 
     private fun createOkHttpClient(): OkHttpClient {
         val httpClient = OkHttpClient.Builder()
@@ -36,27 +52,12 @@ class NasaService {
         return httpClient.build()
     }
 
-    private fun createRetrofit(): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl("https://api.nasa.gov/EPIC/api/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(createOkHttpClient())
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .build()
-    }
-
-    companion object {
-        @JvmField
-        var KEY = "bUPDj3NcY7TPvoShGVEilLJJmiYHzdqyirJx04n4"
-    }
-
-    init {
-        val retrofit = createRetrofit()
-        api = retrofit.create(NasaApi::class.java)
-    }
-
-    suspend fun getDates(): List<Date>? {
+     override fun getDates(): List<Date>? {
         val response = api.getDatesWithPhoto().execute()
         return response.body()
+    }
+
+    override fun getPhotosForDate(): List<Photo>? {
+        TODO("Not yet implemented")
     }
 }
