@@ -1,14 +1,17 @@
 package com.example.nasaphotosviewer
 
 import android.app.Application
+import com.example.nasaphotosviewer.data.NasaRepository
+import com.example.nasaphotosviewer.data.Repository
 import com.example.nasaphotosviewer.data.network.NasaService
+import com.example.nasaphotosviewer.data.network.NetworkService
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache
 import com.nostra13.universalimageloader.core.DisplayImageOptions
 import com.nostra13.universalimageloader.core.ImageLoader
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration
 
 class App : Application() {
-    val nasaService: NasaService = NasaService()
+    val repository: Repository = NasaRepository()
 
     override fun onCreate() {
         super.onCreate()
