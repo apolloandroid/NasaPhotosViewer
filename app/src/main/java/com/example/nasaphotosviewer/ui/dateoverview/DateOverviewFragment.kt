@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.example.nasaphotosviewer.App
 import com.example.nasaphotosviewer.R
 import com.example.nasaphotosviewer.databinding.FragmentDateOverviewBinding
@@ -25,8 +26,12 @@ class DateOverviewFragment : Fragment() {
             DataBindingUtil.inflate(inflater, R.layout.fragment_date_overview, container, false)
         initDatesList()
 
-        viewModel.dates.observe(this, Observer { datesList ->
-            dateListAdapter.submitList(datesList)
+        viewModel.dates.observe(this, Observer {
+            dateListAdapter.submitList(it)
+        })
+
+        viewModel.dateClicked.observe(this, Observer {
+            if (it) navigateToPhotosOverviewFragment()
         })
 
         return binding.root
@@ -41,5 +46,9 @@ class DateOverviewFragment : Fragment() {
     private fun initDatesList() {
         binding.dateList.adapter = dateListAdapter
         binding.dateList.setHasFixedSize(true)
+    }
+
+    private fun navigateToPhotosOverviewFragment() {
+        findNavController().navigate(R.id.action_dateOverviewFragment_to_photosOverviewFragment)
     }
 }
