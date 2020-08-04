@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nasaphotosviewer.data.model.Date
-import com.example.nasaphotosviewer.databinding.DateListItemBinding
+import com.example.nasaphotosviewer.databinding.DatesListItemBinding
 
 class DateListAdapter :
     ListAdapter<Date, DateListAdapter.DateViewHolder>(DateDiffCallBack()) {
@@ -19,7 +19,7 @@ class DateListAdapter :
         holder.bind(date)
     }
 
-    class DateViewHolder private constructor(private val binding: DateListItemBinding) :
+    class DateViewHolder private constructor(private val binding: DatesListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(date: Date) {
@@ -29,7 +29,7 @@ class DateListAdapter :
         companion object {
             fun from(parent: ViewGroup): DateViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = DateListItemBinding.inflate(layoutInflater, parent, false)
+                val binding = DatesListItemBinding.inflate(layoutInflater, parent, false)
                 return DateViewHolder(binding)
             }
         }
