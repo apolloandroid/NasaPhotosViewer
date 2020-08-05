@@ -15,7 +15,6 @@
         android:layout_marginBottom="8dp"
         android:clickable="true"
         android:foreground="?android:attr/selectableItemBackground"
-        android:onClick="@{()->viewmodel.onDateClick()}"
         app:cardElevation="6dp">
 
         <TextView
