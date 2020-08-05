@@ -24,4 +24,6 @@ class PhotosOverviewViewModel(private val application: App) : AndroidViewModel(a
     fun onPhotoClick() {
         _photoClicked.value = true
     }
+
+
 }
