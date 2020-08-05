@@ -7,7 +7,8 @@ import com.example.nasaphotosviewer.App
 import com.example.nasaphotosviewer.data.model.Date
 import kotlinx.coroutines.*
 
-class DateOverviewViewModel(private val application: App) : AndroidViewModel(application) {
+class DateOverviewViewModel(private val application: App) : AndroidViewModel(application),
+    DateListAdapter.OnDateClickListener<Date> {
     private val viewModelJob = Job()
     private val viewModelScope = CoroutineScope(Dispatchers.IO + viewModelJob)
 
@@ -23,8 +24,8 @@ class DateOverviewViewModel(private val application: App) : AndroidViewModel(app
         getDatesList()
     }
 
-    fun onDateClick() {
-        _dateClicked.value = false
+    override fun onDateClick() {
+        _dateClicked.value = true
     }
 
     private fun getDatesList() {
