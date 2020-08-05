@@ -16,7 +16,7 @@ import com.example.nasaphotosviewer.databinding.FragmentDateOverviewBinding
 class DateOverviewFragment : Fragment() {
     private val viewModel: DateOverviewViewModel by lazy { initViewModel() }
     private lateinit var binding: FragmentDateOverviewBinding
-    private var dateListAdapter = DateListAdapter()
+    private var dateListAdapter = DateListAdapter(viewModel)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
