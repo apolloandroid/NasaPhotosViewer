@@ -51,6 +51,8 @@ class PhotosOverviewFragment : Fragment() {
     }
 
     private fun navigateToPhotoDetailsFragment() {
-        findNavController().navigate(R.id.action_photosOverviewFragment_to_photoDetailsFragment)
+        if (findNavController().currentDestination?.id == R.id.photosOverviewFragment) {
+            findNavController().navigate(R.id.action_photosOverviewFragment_to_photoDetailsFragment)
+        }
     }
 }

@@ -49,6 +49,8 @@ class DateOverviewFragment : Fragment() {
     }
 
     private fun navigateToPhotosOverviewFragment() {
-        findNavController().navigate(R.id.action_dateOverviewFragment_to_photosOverviewFragment)
+        if (findNavController().currentDestination?.id == R.id.dateOverviewFragment) {
+            findNavController().navigate(R.id.action_dateOverviewFragment_to_photosOverviewFragment)
+        }
     }
 }
