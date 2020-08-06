@@ -16,7 +16,7 @@ class DateListAdapter(private val itemClickListener: OnDateClickListener<Date>) 
         val viewHolder = DateViewHolder.from(parent)
         viewHolder.itemView.setOnClickListener {
             val position = viewHolder.adapterPosition
-            if (position != RecyclerView.NO_POSITION) itemClickListener.onDateClick()
+            if (position != RecyclerView.NO_POSITION) itemClickListener.onDateClick(getItem(position).date)
         }
         return viewHolder
     }
@@ -52,6 +52,6 @@ class DateListAdapter(private val itemClickListener: OnDateClickListener<Date>) 
     }
 
     interface OnDateClickListener<Date> {
-        fun onDateClick()
+        fun onDateClick(date: String)
     }
 }
