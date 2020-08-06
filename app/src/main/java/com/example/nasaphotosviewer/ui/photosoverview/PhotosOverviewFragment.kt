@@ -16,17 +16,21 @@ import com.example.nasaphotosviewer.ui.dateoverview.DateListAdapter
 
 class PhotosOverviewFragment : Fragment() {
 
-    private val viewModel: PhotosOverviewViewModel by lazy { initViewModel() }
+    private lateinit var viewModel: PhotosOverviewViewModel
     private lateinit var binding: FragmentPhotosOverviewBinding
-    private var photosListAdapter = PhotosListAdapter()
+    private lateinit var photosListAdapter: PhotosListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val date = PhotosOverviewFragmentArgs.fromBundle(arguments).date
+
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_photos_overview, container, false)
-        initPhotosList()
+        viewModel = initViewModel(date)
+        initPhotosList(viewModel)
+        viewModel.getPhotosForDate(date)
 
         viewModel.photos.observe(this, Observer {
             photosListAdapter.submitList(it)
@@ -39,13 +43,14 @@ class PhotosOverviewFragment : Fragment() {
         return binding.root
     }
 
-    private fun initViewModel(): PhotosOverviewViewModel {
+    private fun initViewModel(photo: String): PhotosOverviewViewModel {
         val application = App()
-        val photosOverviewViewModelFactory = PhotosOverviewViewModelFactory(application)
+        val photosOverviewViewModelFactory = PhotosOverviewViewModelFactory(application, photo)
         return photosOverviewViewModelFactory.create(PhotosOverviewViewModel::class.java)
     }
 
-    private fun initPhotosList() {
+    private fun initPhotosList(viewModel: PhotosOverviewViewModel) {
+        photosListAdapter = PhotosListAdapter(viewModel)
         binding.photoList.adapter = photosListAdapter
         binding.photoList.setHasFixedSize(true)
     }
