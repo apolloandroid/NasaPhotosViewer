@@ -8,8 +8,10 @@ import com.example.nasaphotosviewer.data.model.Photo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
-class PhotosOverviewViewModel(private val application: App) : AndroidViewModel(application) {
+class PhotosOverviewViewModel(private val application: App, private val date: String) :
+    AndroidViewModel(application), PhotosListAdapter.OnPhotoClickListener<Photo> {
     private val viewModelJob = Job()
     private val viewModelScope = CoroutineScope(Dispatchers.IO + viewModelJob)
 
@@ -21,9 +23,15 @@ class PhotosOverviewViewModel(private val application: App) : AndroidViewModel(a
     val photoClicked: LiveData<Boolean>
         get() = _photoClicked
 
-    fun onPhotoClick() {
-        _photoClicked.value = true
+    fun getPhotosForDate(date: String) {
+        viewModelScope.launch {
+            _photos.postValue(
+                application.repository.getPhotosForDate(date)
+            )
+        }
     }
 
-
+    override fun onPhotoClick() {
+        _photoClicked.value = true
+    }
 }
