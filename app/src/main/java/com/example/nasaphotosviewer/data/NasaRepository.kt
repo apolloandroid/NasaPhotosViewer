@@ -13,7 +13,7 @@ class NasaRepository : Repository {
         return networkService.getDates()
     }
 
-    override suspend fun getPhotosForDate(): List<Photo>? {
-        return networkService.getPhotosForDate()
+    override suspend fun getPhotosForDate(photo: String): List<Photo>? {
+        return networkService.getPhotosForDate(photo)
     }
 }
