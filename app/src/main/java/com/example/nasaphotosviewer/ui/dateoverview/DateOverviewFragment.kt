@@ -31,7 +31,7 @@ class DateOverviewFragment : Fragment() {
         })
 
         viewModel.dateClicked.observe(this, Observer {
-            if (it) navigateToPhotosOverviewFragment()
+            navigateToPhotosOverviewFragment(it)
         })
 
         return binding.root
@@ -48,9 +48,13 @@ class DateOverviewFragment : Fragment() {
         binding.dateList.setHasFixedSize(true)
     }
 
-    private fun navigateToPhotosOverviewFragment() {
+    private fun navigateToPhotosOverviewFragment(date: String) {
         if (findNavController().currentDestination?.id == R.id.dateOverviewFragment) {
-            findNavController().navigate(R.id.action_dateOverviewFragment_to_photosOverviewFragment)
+            findNavController().navigate(
+                DateOverviewFragmentDirections.actionDateOverviewFragmentToPhotosOverviewFragment(
+                    date
+                )
+            )
         }
     }
 }
