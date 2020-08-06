@@ -13,7 +13,7 @@ import java.io.IOException
 
 private const val BASE_URL = "https://api.nasa.gov/EPIC/api/"
 
-class NasaService:NetworkService {
+class NasaService : NetworkService {
     val api = createRetrofit().create(NasaApi::class.java)
 
     companion object {
@@ -52,12 +52,13 @@ class NasaService:NetworkService {
         return httpClient.build()
     }
 
-     override fun getDates(): List<Date>? {
+    override fun getDates(): List<Date>? {
         val response = api.getDatesWithPhoto().execute()
         return response.body()
     }
 
-    override fun getPhotosForDate(): List<Photo>? {
-        TODO("Not yet implemented")
+    override fun getPhotosForDate(date: String): List<Photo>? {
+        val response = api.getPhotosForDate(date).execute()
+        return response.body()
     }
 }
