@@ -5,5 +5,5 @@ import com.example.nasaphotosviewer.data.model.Photo
 
 interface NetworkService {
     fun getDates(): List<Date>?
-    fun getPhotosForDate(): List<Photo>?
+    fun getPhotosForDate(photo: String): List<Photo>?
 }
