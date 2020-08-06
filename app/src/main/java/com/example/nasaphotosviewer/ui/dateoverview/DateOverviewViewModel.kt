@@ -16,16 +16,12 @@ class DateOverviewViewModel(private val application: App) : AndroidViewModel(app
     val dates: LiveData<List<Date>>
         get() = _dates
 
-    private var _dateClicked = MutableLiveData<Boolean>()
-    val dateClicked: LiveData<Boolean>
+    private var _dateClicked = MutableLiveData<String>()
+    val dateClicked: LiveData<String>
         get() = _dateClicked
 
     init {
         getDatesList()
-    }
-
-    override fun onDateClick() {
-        _dateClicked.value = true
     }
 
     private fun getDatesList() {
@@ -34,6 +30,10 @@ class DateOverviewViewModel(private val application: App) : AndroidViewModel(app
                 application.repository.getDates()
             )
         }
+    }
+
+    override fun onDateClick(date:String) {
+        _dateClicked.value = date
     }
 
     override fun onCleared() {
