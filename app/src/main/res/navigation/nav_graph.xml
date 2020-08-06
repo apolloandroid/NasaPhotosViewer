@@ -9,10 +9,13 @@
         android:id="@+id/dateOverviewFragment"
         android:name="com.example.nasaphotosviewer.ui.dateoverview.DateOverviewFragment"
         android:label="fragment_date_overview"
-        tools:layout="@layout/fragment_date_overview" >
+        tools:layout="@layout/fragment_date_overview">
         <action
             android:id="@+id/action_dateOverviewFragment_to_photosOverviewFragment"
             app:destination="@id/photosOverviewFragment" />
+        <argument
+            android:name="date"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/photoDetailsFragment"
@@ -23,9 +26,12 @@
         android:id="@+id/photosOverviewFragment"
         android:name="com.example.nasaphotosviewer.ui.photosoverview.PhotosOverviewFragment"
         android:label="fragment_photos_overview"
-        tools:layout="@layout/fragment_photos_overview" >
+        tools:layout="@layout/fragment_photos_overview">
         <action
             android:id="@+id/action_photosOverviewFragment_to_photoDetailsFragment"
             app:destination="@id/photoDetailsFragment" />
+        <argument
+            android:name="date"
+            app:argType="string" />
     </fragment>
 </navigation>
