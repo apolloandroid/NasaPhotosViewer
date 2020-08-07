@@ -1,6 +1,5 @@
 package com.example.nasaphotosviewer.ui.dateoverview
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.nasaphotosviewer.App
