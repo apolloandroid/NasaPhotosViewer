@@ -28,7 +28,7 @@ class PhotosOverviewFragment : Fragment() {
 
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_photos_overview, container, false)
-        viewModel = initViewModel(date)
+        viewModel = initViewModel()
         initPhotosList(viewModel)
         viewModel.getPhotosForDate(date)
 
@@ -43,9 +43,9 @@ class PhotosOverviewFragment : Fragment() {
         return binding.root
     }
 
-    private fun initViewModel(photo: String): PhotosOverviewViewModel {
+    private fun initViewModel(): PhotosOverviewViewModel {
         val application = App()
-        val photosOverviewViewModelFactory = PhotosOverviewViewModelFactory(application, photo)
+        val photosOverviewViewModelFactory = PhotosOverviewViewModelFactory(application)
         return photosOverviewViewModelFactory.create(PhotosOverviewViewModel::class.java)
     }
 
