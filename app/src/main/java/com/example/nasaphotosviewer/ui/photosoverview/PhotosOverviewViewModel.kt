@@ -10,7 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class PhotosOverviewViewModel(private val application: App, private val date: String) :
+class PhotosOverviewViewModel(private val application: App) :
     AndroidViewModel(application), PhotosListAdapter.OnPhotoClickListener<Photo> {
     private val viewModelJob = Job()
     private val viewModelScope = CoroutineScope(Dispatchers.IO + viewModelJob)
