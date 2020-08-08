@@ -37,7 +37,7 @@ class PhotosOverviewFragment : Fragment() {
         })
 
         viewModel.photoClicked.observe(this, Observer {
-            if (it) navigateToPhotoDetailsFragment()
+            navigateToPhotoDetailsFragment(it)
         })
 
         return binding.root
@@ -55,9 +55,13 @@ class PhotosOverviewFragment : Fragment() {
         binding.photoList.setHasFixedSize(true)
     }
 
-    private fun navigateToPhotoDetailsFragment() {
+    private fun navigateToPhotoDetailsFragment(photoUrl: String) {
         if (findNavController().currentDestination?.id == R.id.photosOverviewFragment) {
-            findNavController().navigate(R.id.action_photosOverviewFragment_to_photoDetailsFragment)
+            findNavController().navigate(
+                PhotosOverviewFragmentDirections.actionPhotosOverviewFragmentToPhotoDetailsFragment(
+                    photoUrl
+                )
+            )
         }
     }
 }
