@@ -19,8 +19,8 @@ class PhotosOverviewViewModel(private val application: App) :
     val photos: LiveData<List<Photo>>
         get() = _photos
 
-    private var _photoClicked = MutableLiveData<Boolean>()
-    val photoClicked: LiveData<Boolean>
+    private var _photoClicked = MutableLiveData<String>()
+    val photoClicked: LiveData<String>
         get() = _photoClicked
 
     fun getPhotosForDate(date: String) {
@@ -31,7 +31,7 @@ class PhotosOverviewViewModel(private val application: App) :
         }
     }
 
-    override fun onPhotoClick() {
-        _photoClicked.value = true
+    override fun onPhotoClick(photoUrl:String) {
+        _photoClicked.value = photoUrl
     }
 }
