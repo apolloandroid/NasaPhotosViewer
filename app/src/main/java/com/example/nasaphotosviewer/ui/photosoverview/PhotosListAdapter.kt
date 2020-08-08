@@ -17,7 +17,11 @@ class PhotosListAdapter(private val itemClickListener: OnPhotoClickListener<Phot
         val viewHolder = PhotoViewHolder.from(parent)
         viewHolder.itemView.setOnClickListener {
             val position = viewHolder.adapterPosition
-            if (position != RecyclerView.NO_POSITION) itemClickListener.onPhotoClick()
+            if (position != RecyclerView.NO_POSITION) itemClickListener.onPhotoClick(
+                getItem(
+                    position
+                ).imageUrl
+            )
         }
         return viewHolder
     }
@@ -52,6 +56,6 @@ class PhotosListAdapter(private val itemClickListener: OnPhotoClickListener<Phot
     }
 
     interface OnPhotoClickListener<Photo> {
-        fun onPhotoClick()
+        fun onPhotoClick(photoUrl: String)
     }
 }
