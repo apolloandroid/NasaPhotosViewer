@@ -24,7 +24,7 @@ android {
         }
     }
 
-    dataBinding{
+    dataBinding {
         enabled = true
     }
 }
@@ -52,15 +52,15 @@ dependencies {
     //    Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$version_retrofit_coroutines_adapter"
+
     //OkHttp
     implementation 'com.squareup.okhttp3:okhttp:4.0.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.0.0'
+
     //Gson
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'com.google.code.gson:gson:2.8.5'
-    //Downloading images
-    implementation 'com.davemorrissey.labs:subsampling-scale-image-view:3.10.0'
-    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 
     // Navigation
     implementation "android.arch.navigation:navigation-fragment-ktx:$navigationVersion"
@@ -70,11 +70,6 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
 
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.8'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
-
-    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$version_retrofit_coroutines_adapter"
-
-
-
+//    Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }
