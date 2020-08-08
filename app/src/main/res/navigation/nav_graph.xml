@@ -13,15 +13,16 @@
         <action
             android:id="@+id/action_dateOverviewFragment_to_photosOverviewFragment"
             app:destination="@id/photosOverviewFragment" />
-        <argument
-            android:name="date"
-            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/photoDetailsFragment"
         android:name="com.example.nasaphotosviewer.ui.photodetails.PhotoDetailsFragment"
         android:label="fragment_photo_details"
-        tools:layout="@layout/fragment_photo_details" />
+        tools:layout="@layout/fragment_photo_details">
+        <argument
+            android:name="photoUrl"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/photosOverviewFragment"
         android:name="com.example.nasaphotosviewer.ui.photosoverview.PhotosOverviewFragment"
@@ -33,5 +34,6 @@
         <argument
             android:name="date"
             app:argType="string" />
+
     </fragment>
 </navigation>
