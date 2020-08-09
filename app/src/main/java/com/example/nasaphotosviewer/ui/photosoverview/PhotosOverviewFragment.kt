@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.nasaphotosviewer.App
 import com.example.nasaphotosviewer.R
 import com.example.nasaphotosviewer.databinding.FragmentPhotosOverviewBinding
-import com.example.nasaphotosviewer.ui.dateoverview.DateListAdapter
+import kotlinx.android.synthetic.main.activity_main.toolbar
 
 
 class PhotosOverviewFragment : Fragment() {
@@ -28,6 +28,7 @@ class PhotosOverviewFragment : Fragment() {
 
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_photos_overview, container, false)
+        activity?.toolbar?.title = getString(R.string.choose_photo)
         viewModel = initViewModel()
         initPhotosList(viewModel)
         viewModel.getPhotosForDate(date)
