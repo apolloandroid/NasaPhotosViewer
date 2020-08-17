@@ -47,7 +47,7 @@ class PhotoDetailsFragment : Fragment() {
     }
 
     private fun initViewModel(): PhotoDetailsViewModel {
-        val application = App
+        val application = App()
         val photoDetailViewModelFactory = PhotoDetailsViewModelFactory(application)
         return photoDetailViewModelFactory.create(PhotoDetailsViewModel::class.java)
     }
