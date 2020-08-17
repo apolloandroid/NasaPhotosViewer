@@ -43,7 +43,7 @@ class PhotosOverviewFragment : Fragment() {
     }
 
     private fun initViewModel(): PhotosOverviewViewModel {
-        val application = App()
+        val application = App
         val photosOverviewViewModelFactory = PhotosOverviewViewModelFactory(application)
         return photosOverviewViewModelFactory.create(PhotosOverviewViewModel::class.java)
     }
