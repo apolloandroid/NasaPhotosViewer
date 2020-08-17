@@ -38,7 +38,7 @@ class DateOverviewFragment : Fragment() {
     }
 
     private fun initViewModel(): DateOverviewViewModel {
-        val application = App()
+        val application = App
         val viewViewModelFactory = DateOverviewViewModelFactory(application)
         return viewViewModelFactory.create(DateOverviewViewModel::class.java)
     }
